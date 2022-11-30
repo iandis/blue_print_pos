@@ -21,14 +21,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.22"
-  blue_thermal_printer:
-    dependency: transitive
-    description:
-      name: blue_thermal_printer
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.0"
+    version: "0.0.23"
   boolean_selector:
     dependency: transitive
     description:
@@ -57,13 +50,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.16.0"
-  convert:
-    dependency: transitive
-    description:
-      name: convert
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.0"
   crypto:
     dependency: transitive
     description:
@@ -92,25 +78,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.1"
-  fixnum:
+  fluetooth:
     dependency: transitive
     description:
-      name: fixnum
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
+      path: "."
+      ref: "refactor/chunk-bytes-corebluetooth"
+      resolved-ref: "3cacdf21a6540114b6134a1669c05e2617172272"
+      url: "https://github.com/iandis/fluetooth"
+    source: git
+    version: "0.0.2"
   flutter:
     dependency: "direct main"
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_blue_plus:
-    dependency: transitive
-    description:
-      name: flutter_blue_plus
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -172,13 +153,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.1.0"
-  protobuf:
-    dependency: transitive
-    description:
-      name: protobuf
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   qr:
     dependency: transitive
     description:
@@ -195,13 +169,6 @@ packages:
       url: "https://github.com/theyakka/qr.flutter.git"
     source: git
     version: "4.0.1"
-  rxdart:
-    dependency: transitive
-    description:
-      name: rxdart
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.27.3"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -272,4 +239,4 @@ packages:
     version: "5.1.1"
 sdks:
   dart: ">=2.17.0-0 <3.0.0"
-  flutter: ">=2.5.0"
+  flutter: ">=2.2.3"
