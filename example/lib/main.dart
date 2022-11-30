@@ -18,8 +18,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final BluePrintPos _bluePrintPos = BluePrintPos.instance;
-  List<BlueDevice> _blueDevices = <BlueDevice>[];
-  BlueDevice? _selectedDevice;
+  List<FluetoothDevice> _blueDevices = <FluetoothDevice>[];
+  FluetoothDevice? _selectedDevice;
   bool _isLoading = false;
   int _loadingAtIndex = -1;
 
@@ -49,8 +49,8 @@ class _MyAppState extends State<MyApp> {
                                 children: <Widget>[
                                   Expanded(
                                     child: GestureDetector(
-                                      onTap: _blueDevices[index].address ==
-                                              (_selectedDevice?.address ?? '')
+                                      onTap: _blueDevices[index].id ==
+                                              (_selectedDevice?.id ?? '')
                                           ? _onDisconnectDevice
                                           : () => _onSelectDevice(index),
                                       child: Padding(
@@ -62,25 +62,21 @@ class _MyAppState extends State<MyApp> {
                                             Text(
                                               _blueDevices[index].name,
                                               style: TextStyle(
-                                                color:
-                                                    _selectedDevice?.address ==
-                                                            _blueDevices[index]
-                                                                .address
-                                                        ? Colors.blue
-                                                        : Colors.black,
+                                                color: _selectedDevice?.id ==
+                                                        _blueDevices[index].id
+                                                    ? Colors.blue
+                                                    : Colors.black,
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                             ),
                                             Text(
-                                              _blueDevices[index].address,
+                                              _blueDevices[index].id,
                                               style: TextStyle(
-                                                color:
-                                                    _selectedDevice?.address ==
-                                                            _blueDevices[index]
-                                                                .address
-                                                        ? Colors.blueGrey
-                                                        : Colors.grey,
+                                                color: _selectedDevice?.id ==
+                                                        _blueDevices[index].id
+                                                    ? Colors.blueGrey
+                                                    : Colors.grey,
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w500,
                                               ),
@@ -103,8 +99,8 @@ class _MyAppState extends State<MyApp> {
                                       ),
                                     ),
                                   if (!_isLoading &&
-                                      _blueDevices[index].address ==
-                                          (_selectedDevice?.address ?? ''))
+                                      _blueDevices[index].id ==
+                                          (_selectedDevice?.id ?? ''))
                                     TextButton(
                                       onPressed: _onPrintReceipt,
                                       child: Container(
@@ -168,7 +164,7 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> _onScanPressed() async {
     setState(() => _isLoading = true);
-    _bluePrintPos.scan().then((List<BlueDevice> devices) {
+    _bluePrintPos.scan().then((List<FluetoothDevice> devices) {
       if (devices.isNotEmpty) {
         setState(() {
           _blueDevices = devices;
@@ -195,7 +191,7 @@ class _MyAppState extends State<MyApp> {
       _isLoading = true;
       _loadingAtIndex = index;
     });
-    final BlueDevice blueDevice = _blueDevices[index];
+    final FluetoothDevice blueDevice = _blueDevices[index];
     _bluePrintPos.connect(blueDevice).then((ConnectionStatus status) {
       if (status == ConnectionStatus.connected) {
         setState(() => _selectedDevice = blueDevice);
