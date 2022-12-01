@@ -3,7 +3,6 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui';
 
-import 'package:blue_print_pos/models/batch_print_options.dart';
 import 'package:blue_print_pos/models/models.dart';
 import 'package:blue_print_pos/receipt/receipt_section_text.dart';
 import 'package:esc_pos_utils_plus/esc_pos_utils.dart';
@@ -12,7 +11,10 @@ import 'package:flutter/services.dart';
 import 'package:image/image.dart' as img;
 import 'package:qr_flutter/qr_flutter.dart';
 
+export 'package:esc_pos_utils_plus/esc_pos_utils.dart' show PaperSize;
 export 'package:fluetooth/fluetooth.dart' show FluetoothDevice;
+export 'models/models.dart';
+export 'receipt/receipt.dart';
 
 class BluePrintPos {
   static final BluePrintPos _instance = BluePrintPos();
