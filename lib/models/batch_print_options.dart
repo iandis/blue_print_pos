@@ -4,12 +4,16 @@ class BatchPrintOptions {
   const BatchPrintOptions(
     int iterations, {
     this.delay = Duration.zero,
+    this.feedCount = 0,
+    this.useCut = false,
   })  : _iterations = iterations,
         _n = null;
 
   const BatchPrintOptions.perNContent(
     int n, {
     this.delay = Duration.zero,
+    this.feedCount = 0,
+    this.useCut = false,
   })  : _n = n,
         _iterations = null;
 
@@ -22,9 +26,19 @@ class BatchPrintOptions {
   /// Delay between each print
   final Duration delay;
 
-  Iterable<List<int>> getStartEnd(int contentLength) sync* {
+  /// Feed count for each print
+  final int feedCount;
+
+  /// Whether each print should be appended cut command at the end of content
+  final bool useCut;
+
+  /// Returns an iteration generator that generates 3 values (in order):
+  /// - start of batch (int)
+  /// - end of batch (int)
+  /// - whether the batch is the last one (bool)
+  Iterable<List<Object>> getStartEnd(int contentLength) sync* {
     if (contentLength == 0) {
-      yield const <int>[0, 0];
+      yield const <Object>[0, 0, true];
       return;
     }
     final int iterations = _iterations ?? (contentLength / _n!).ceil();
@@ -34,7 +48,7 @@ class BatchPrintOptions {
     for (int i = 0; i < iterations; i++) {
       end += subListLength;
       end = math.min(end, contentLength);
-      yield <int>[start, end];
+      yield <Object>[start, end, end == contentLength];
       start = end;
     }
   }

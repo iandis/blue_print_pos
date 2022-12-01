@@ -102,14 +102,15 @@ class BluePrintPos {
       }
     }
 
-    final Iterable<List<int>> startEndIter =
+    final Iterable<List<Object>> startEndIter =
         batchOptions.getStartEnd(contentLength);
 
-    for (final List<int> startEnd in startEndIter) {
+    for (final List<Object> startEnd in startEndIter) {
       final ReceiptSectionText section = receiptSectionText.getSection(
-        startEnd[0],
-        startEnd[1],
+        startEnd[0] as int,
+        startEnd[1] as int,
       );
+      final bool isEndOfBatch = startEnd[2] as bool;
       final Uint8List bytes = await contentToImage(
         content: section.getContent(),
         duration: duration,
@@ -118,8 +119,8 @@ class BluePrintPos {
       final List<int> byteBuffer = await _getBytes(
         bytes,
         paperSize: paperSize,
-        feedCount: feedCount,
-        useCut: useCut,
+        feedCount: isEndOfBatch ? feedCount : batchOptions.feedCount,
+        useCut: isEndOfBatch ? useCut : batchOptions.useCut,
         useRaster: useRaster,
       );
       await _printProcess(byteBuffer);
