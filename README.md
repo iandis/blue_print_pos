@@ -51,18 +51,12 @@ receiptText.addSpacer(useDashed: true);
 ```
 
 ### Batch Printing
-Since there's a [known issue](https://github.com/andriyoganp/blue_print_pos/issues/68) printing on iOS, batch printing
-can be a workaround for it using [BatchPrintOptions].
-
-Example:
 ```dart
 await bluePrintPos.printReceiptText(
   receipt,
   batchPrintOptions: const BatchPrintOptions.perNContent(20),
 );
 ```
-Note that `BatchPrintOptions.perNContent(20)` is the default behavior on iOS if `batchPrintOptions` is `null`, while
-on Android `BatchPrintOptions.full` is the default one (no batch printing enabled).
 
 ## Getting Started
 ### Android

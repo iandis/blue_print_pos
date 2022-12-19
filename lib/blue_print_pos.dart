@@ -81,6 +81,9 @@ class BluePrintPos {
   /// [textScaleFactor] the text scale factor (must be > 0 or null).
   /// note that this currently only works on Android.
   /// defaults to system's font settings.
+  /// 
+  /// [batchPrintOptions] to print each [ReceiptSectionText]'s content in batch.
+  /// defaults to [BatchPrintOptions.full].
   Future<void> printReceiptText(
     ReceiptSectionText receiptSectionText, {
     int feedCount = 0,
@@ -93,16 +96,8 @@ class BluePrintPos {
   }) async {
     final int contentLength = receiptSectionText.contentLength;
 
-    final BatchPrintOptions batchOptions;
-    if (batchPrintOptions != null) {
-      batchOptions = batchPrintOptions;
-    } else {
-      if (Platform.isIOS) {
-        batchOptions = const BatchPrintOptions.perNContent(20);
-      } else {
-        batchOptions = BatchPrintOptions.full;
-      }
-    }
+    final BatchPrintOptions batchOptions =
+        batchPrintOptions ?? BatchPrintOptions.full;
 
     final Iterable<List<Object>> startEndIter =
         batchOptions.getStartEnd(contentLength);
