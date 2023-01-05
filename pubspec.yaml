@@ -12,10 +12,7 @@ environment:
 dependencies:
   # Utilities for generate ByteBuffer
   esc_pos_utils_plus: ^2.0.1+6
-  fluetooth:
-    git:
-      url: https://github.com/iandis/fluetooth
-      ref: refactor/chunk-bytes-corebluetooth
+  fluetooth: 0.0.3
   # Framework
   flutter:
     sdk: flutter

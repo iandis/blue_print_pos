@@ -74,12 +74,10 @@ packages:
   fluetooth:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "refactor/chunk-bytes-corebluetooth"
-      resolved-ref: "3cacdf21a6540114b6134a1669c05e2617172272"
-      url: "https://github.com/iandis/fluetooth"
-    source: git
-    version: "0.0.2"
+      name: fluetooth
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.3"
   flutter:
     dependency: "direct main"
     description: flutter
