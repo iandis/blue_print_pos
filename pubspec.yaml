@@ -1,6 +1,6 @@
 name: blue_print_pos
 description: Plugin to connecting bluetooth printer device, support on Android and iOS
-version: 0.1.2
+version: 0.1.3
 homepage: https://github.com/iandis/blue_print_pos
 
 publish_to: 'none'
